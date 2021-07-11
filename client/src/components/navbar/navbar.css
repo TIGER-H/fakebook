@@ -1,0 +1,85 @@
+body {
+  margin: 0;
+}
+.Navbarcontainer {
+  height: 56px;
+  width: 100%;
+  background-color: #1877f2;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+}
+
+.NavbarLeft {
+  display: flex;
+  flex: 3;
+}
+
+.logo {
+  font-size: 24px;
+  margin-left: 20px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+
+.searchbar {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  background-color: white;
+}
+.searchIcon {
+  padding-left: 5px;
+  color: grey;
+  font-size: 20px !important;
+}
+.searchInput {
+  border: none;
+  width: 70%;
+}
+.searchInput:focus {
+  outline: none;
+}
+
+.NavbarCenter {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: grey;
+  width: 100%;
+  height: 100%;
+  flex: 5;
+}
+
+.NavbarRight {
+  flex: 4;
+}
+
+.navbarIcons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbarIconItem {
+  margin-right: 15px;
+  cursor: pointer;
+  position: relative;
+}
+
+.navbarIconBadge{
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    top: -5px;
+    right: -5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+}
