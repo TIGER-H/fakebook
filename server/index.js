@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const userRoute = require('./users');
 const authRoute = require('./auth');
 const postRoute = require('./posts');
+const cors = require('cors')
 
 const url = process.env.MONGO_URL;
 
@@ -24,6 +25,7 @@ mongoose
   });
 
 app.use(express.json());
+app.use(cors())
 app.use('/api/users', userRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/post', postRoute);

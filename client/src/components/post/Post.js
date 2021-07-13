@@ -1,32 +1,56 @@
 import { Chat, Favorite, MoreVert, ThumbUp } from "@material-ui/icons";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import "./post.css";
 
-const Post = () => {
+const Post = ({ post }) => {
+  const [likes, setLikes] = useState(post.likes.length);
+  const [liked, setLiked] = useState(false);
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const { data } = await axios.get(
+        `http://localhost:3001/api/users/${post.userId}`
+      );
+      setUser(data);
+    };
+    fetchUser();
+  }, [post.userId]);
+
+  const handleLikeClick = () => {};
+
   return (
     <div className="post">
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
             <img src="assets/1.png" alt="" className="postProfileImg" />
-            <span className="postUsername">Username</span>
-            <span className="postDate">2 min ago</span>
+            <span className="postUsername">{user.username}</span>
+            <span className="postDate">{post.createdAt}</span>
           </div>
           <div className="postTopRight">
             <MoreVert />
           </div>
         </div>
         <div className="postCenter">
-          <span className="postText">this is my post.</span>
+          <span className="postText">{post.description}</span>
           <img src="assets/1.png" alt="" className="postImg" />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
-            <ThumbUp className="likeIcon" color="primary" />
+            <ThumbUp
+              className="likeIcon"
+              color="primary"
+              onClick={() => setLikes(likes + 1)}
+            />
             <Favorite className="likeIcon" color="error" />
-            <span className="postLikeCounter">20 people like it.</span>
+            <span className="postLikeCounter">{likes} people like it.</span>
           </div>
           <div className="postBottomRight">
-            <span className="postCommentText">10 comments.</span>
+            <span className="postCommentText">
+              {post.comments.length} comments.
+            </span>
           </div>
         </div>
       </div>
