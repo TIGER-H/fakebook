@@ -79,7 +79,6 @@
   margin-right: 5px;
   width: 18px;
   height: 18px;
-  cursor: pointer;
 }
 
 .postBottomRight {
@@ -92,13 +91,24 @@
 
 .postBottomButtons {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   padding: 0 12px;
   border-top: 1px solid #eee;
   /* border-bottom: 1px solid #eee; */
+  cursor: pointer;
+}
+.postBottomButton:hover {
+  background-color: #eee;
+  border-radius: 5px;
+}
+
+.postBottomButton:active {
+  background-color: darkgray;
 }
 
 .postBottomButton {
+  text-align: center;
+  width: 100%;
   padding: 12px 0;
 }

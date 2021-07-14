@@ -56,3 +56,55 @@
   flex: 6;
   padding-left: 50px;
 }
+
+.profileMiddle {
+  background-color: white;
+  position: sticky;
+  top: 56px;
+  height: 60px;
+}
+
+.profileMiddleContainer {
+  display: flex;
+  width: 70%;
+  margin: 0 auto;
+  top: 56px;
+  height: 60px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profileFloatUser {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 10px;
+}
+
+.profileFloatUser:hover {
+  background-color: #eee;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.profileFloatUserAvatar {
+  height: 26px;
+  width: 26px;
+  margin-right: 10px;
+  border-radius: 50%;
+  border: 1px #eee solid;
+}
+
+.profileFloatUsername {
+  padding-right: 10px;
+}
+
+.profileFollowButton {
+  background-color: #e4e6eb;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}

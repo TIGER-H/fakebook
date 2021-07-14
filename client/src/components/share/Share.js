@@ -1,10 +1,28 @@
 import { EmojiEmotions, Label, PermMedia, Room } from "@material-ui/icons";
-import React, { useContext } from "react";
+import axios from "axios";
+import React, { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import "./share.css";
 
 const Share = () => {
   const { user } = useContext(AuthContext);
+  const description = useRef();
+  const [file, setFile] = useState(null);
+
+  const handleShare = async (e) => {
+    e.preventDefault();
+    const newPost = {
+      userId: user._id,
+      description: description.current.value,
+    };
+    try {
+      await axios.post("http://localhost:3001/api/post", newPost);
+      description = "";
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
   return (
     <div className="share">
       <div className="shareWrapper">
@@ -21,16 +39,24 @@ const Share = () => {
           <input
             type="text"
             className="shareInput"
-            placeholder="shareInput Here"
+            placeholder={`What's in your mind ${user.username}?`}
+            ref={description}
           />
         </div>
         <hr className="shareHr" />
-        <div className="shareBottom">
+        <form className="shareBottom" onSubmit={handleShare}>
           <div className="shareOptions">
-            <div className="shareOption">
+            <label htmlFor="file" className="shareOption">
               <PermMedia className="shareIcon" />
               <span className="shareOptionText">Photo or Video</span>
-            </div>
+              <input
+                style={{ display: "none" }}
+                type="file"
+                id="file"
+                accept=".png,.jpg,.jpeg"
+                onChange={(e) => setFile(e.target.files[0])}
+              />
+            </label>
             <div className="shareOption">
               <Label className="shareIcon" />
               <span className="shareOptionText">Tag</span>
@@ -44,8 +70,10 @@ const Share = () => {
               <span className="shareOptionText">Feeling</span>
             </div>
           </div>
-          <button className="shareButton">Share</button>
-        </div>
+          <button type="submit" className="shareButton">
+            Share
+          </button>
+        </form>
       </div>
     </div>
   );

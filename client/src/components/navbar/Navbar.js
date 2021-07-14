@@ -6,7 +6,7 @@ import "./navbar.css";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
+  
   return (
     <div className="Navbarcontainer">
       <div className="NavbarLeft">
@@ -35,7 +35,7 @@ const Navbar = () => {
             alt=""
             className="navbarUserAvatar"
           />
-          <span className="navbarUsername">Taige Huang</span>
+          <span className="navbarUsername">{user.username}</span>
         </Link>
         <div className="navbarIcons">
           <div className="navbarIconItem">

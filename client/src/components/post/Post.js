@@ -1,13 +1,19 @@
 import { Chat, Favorite, MoreVert, ThumbUp } from "@material-ui/icons";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 import "./post.css";
 
 const Post = ({ post }) => {
   const [likes, setLikes] = useState(post.likes.length);
   const [liked, setLiked] = useState(false);
   const [user, setUser] = useState({});
-  console.log(post);
+  const { user: currentUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    setLiked(post.likes.includes(currentUser._id));
+  }, [currentUser._id, post.likes]);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -19,22 +25,32 @@ const Post = ({ post }) => {
     fetchUser();
   }, [post.userId]);
 
-  const handleLikeClick = () => {};
+  const handleLikeClick = async () => {
+    try {
+      await axios.put(`http://localhost:3001/api/post/${post._id}/like`, {
+        userId: currentUser._id,
+      });
+      setLikes(liked ? likes - 1 : likes + 1);
+      setLiked(!liked);
+    } catch (error) {}
+  };
 
   return (
     <div className="post">
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <img
-              src={
-                user.profilePicture
-                  ? user.profilePicture
-                  : process.env.PUBLIC_URL + "/assets/default.png"
-              }
-              alt=""
-              className="postProfileImg"
-            />
+            <Link to={`/profile/${user.username}`}>
+              <img
+                src={
+                  user.profilePicture
+                    ? user.profilePicture
+                    : process.env.PUBLIC_URL + "/assets/default.png"
+                }
+                alt=""
+                className="postProfileImg"
+              />
+            </Link>
             <div className="postUserInfo">
               <span className="postUsername">{user.username}</span>
               <span className="postDate">{post.createdAt}</span>
@@ -54,11 +70,7 @@ const Post = ({ post }) => {
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
-            <ThumbUp
-              className="likeIcon"
-              color="primary"
-              onClick={() => setLikes(likes + 1)}
-            />
+            <ThumbUp className="likeIcon" color="primary" />
             <Favorite className="likeIcon" color="error" />
             <span className="postLikeCounter">{likes} people like it.</span>
           </div>
@@ -69,7 +81,9 @@ const Post = ({ post }) => {
           </div>
         </div>
         <div className="postBottomButtons">
-          <div className="postBottomButton">👍赞</div>
+          <div className="postBottomButton" onClick={handleLikeClick}>
+            👍赞
+          </div>
           <div className="postBottomButton">💬评论</div>
         </div>
       </div>
