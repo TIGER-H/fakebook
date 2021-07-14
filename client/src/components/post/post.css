@@ -7,67 +7,98 @@
   margin: 20px 0;
 }
 
-.postWrapper{
-    padding: 10px;
+.postWrapper {
+  padding-top: 10px;
 }
 
-.postTop{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.postTop {
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.postTopLeft{
-    display: flex;
-    align-items: center;
+.postTopLeft {
+  display: flex;
+  align-items: center;
 }
 
-.postProfileImg{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-.postUsername{
-    font-size: 15px;
-    margin: 0 10px;
+.postProfileImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-.postDate{
-    font-size: 12px;
+.postUserInfo {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+.postUsername {
+  font-size: 15px;
+  font-weight: bold;
 }
 
-.postCenter{
-    margin: 20px 0;
+.postDate {
+  font-size: 13px;
 }
 
-.postImg{
-    margin-top: 20px;
-    width: 100%;
-    max-height: 500px;
-    object-fit: contain;
+.postCenter {
+  margin-top: 20px;
 }
 
-.postBottom{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.postText {
+  margin-left: 10px;
 }
 
-.postBottomLeft{
-    display: flex;
-    align-items: center;
+.postImg {
+  margin-top: 5px;
+  width: 100%;
+  /* max-height: 500px; */
+  object-fit: contain;
+  border-bottom: 1px solid #eee;
 }
 
-.likeIcon{
-    background-color: grey;
-    border-radius: 50%;
-    margin-right: 5px;
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
+.postBottom {
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 2px solid blue;
 }
 
-.postCommentText{
-    cursor: pointer;
+.postBottomLeft {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.likeIcon {
+  border-radius: 50%;
+  margin-right: 5px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.postBottomRight {
+  margin-right: 10px;
+}
+
+.postCommentText {
+  cursor: pointer;
+}
+
+.postBottomButtons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 12px;
+  border-top: 1px solid #eee;
+  /* border-bottom: 1px solid #eee; */
+}
+
+.postBottomButton {
+  padding: 12px 0;
 }

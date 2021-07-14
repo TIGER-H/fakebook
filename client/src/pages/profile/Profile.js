@@ -1,11 +1,26 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import Feed from "../../components/feed/Feed";
 import Navbar from "../../components/navbar/Navbar";
-import Post from "../../components/post/Post";
-import Share from "../../components/share/Share";
 import Sidebar from "../../components/sidebar/Sidebar";
 import "./profile.css";
 
 const Profile = () => {
+  const [user, setUser] = useState({});
+  const { username } = useParams();
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const { data } = await axios.get(
+        `http://localhost:3001/api/users?username=${username}`
+      );
+      setUser(data);
+      console.log(data);
+    };
+    fetchUser();
+  }, []);
+
   return (
     <div>
       <Navbar />
@@ -16,8 +31,8 @@ const Profile = () => {
             <img src="assets/1.png" alt="" className="profileAvatar" />
           </div>
           <div className="profileUserInfo">
-            <span className="profileUsername">Taige Huang</span>
-            <span className="profileUserDesc">Halo</span>
+            <span className="profileUsername">{user.username}</span>
+            <span className="profileUserDesc">{user.description}</span>
           </div>
         </div>
         <div className="profileBottom">
@@ -25,8 +40,7 @@ const Profile = () => {
             <Sidebar />
           </div>
           <div className="profileBottomRight">
-            <Share />
-            <Post />
+            <Feed username="test" />
           </div>
         </div>
       </div>

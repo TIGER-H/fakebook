@@ -11,7 +11,7 @@ const Post = ({ post }) => {
   useEffect(() => {
     const fetchUser = async () => {
       const { data } = await axios.get(
-        `http://localhost:3001/api/users/${post.userId}`
+        `http://localhost:3001/api/users?userId=${post.userId}`
       );
       setUser(data);
     };
@@ -26,8 +26,10 @@ const Post = ({ post }) => {
         <div className="postTop">
           <div className="postTopLeft">
             <img src="assets/1.png" alt="" className="postProfileImg" />
-            <span className="postUsername">{user.username}</span>
-            <span className="postDate">{post.createdAt}</span>
+            <div className="postUserInfo">
+              <span className="postUsername">{user.username}</span>
+              <span className="postDate">{post.createdAt}</span>
+            </div>
           </div>
           <div className="postTopRight">
             <MoreVert />
@@ -52,6 +54,10 @@ const Post = ({ post }) => {
               {post.comments.length} comments.
             </span>
           </div>
+        </div>
+        <div className="postBottomButtons">
+          <div className="postBottomButton">👍赞</div>
+          <div className="postBottomButton">💬评论</div>
         </div>
       </div>
     </div>
