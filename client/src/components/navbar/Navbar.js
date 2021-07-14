@@ -1,12 +1,16 @@
 import { Search, Person, Chat, Notifications } from "@material-ui/icons";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 import "./navbar.css";
 
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
+  console.log(user);
   return (
     <div className="Navbarcontainer">
       <div className="NavbarLeft">
-        <Link to="/" >
+        <Link to="/">
           <span className="logo">Fakebook</span>
         </Link>
         <div className="searchbar">
@@ -21,10 +25,18 @@ const Navbar = () => {
       </div>
 
       <div className="NavbarRight">
-        <div className="navbarUser">
-          <img src="assets/1.png" alt="" className="navbarUserAvatar" />
+        <Link to={`/profile/${user.username}`} className="navbarUser">
+          <img
+            src={
+              user.profilePicture
+                ? user.profilePicture
+                : process.env.PUBLIC_URL + "/assets/default.png"
+            }
+            alt=""
+            className="navbarUserAvatar"
+          />
           <span className="navbarUsername">Taige Huang</span>
-        </div>
+        </Link>
         <div className="navbarIcons">
           <div className="navbarIconItem">
             <Person className="navbarIcon" />

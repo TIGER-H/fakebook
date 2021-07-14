@@ -1,13 +1,23 @@
 import { EmojiEmotions, Label, PermMedia, Room } from "@material-ui/icons";
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 import "./share.css";
 
 const Share = () => {
+  const { user } = useContext(AuthContext);
   return (
     <div className="share">
       <div className="shareWrapper">
         <div className="shareTop">
-          <img src="assets/1.png" alt="" className="shareProfileImg" />
+          <img
+            src={
+              user.profilePicture
+                ? user.profilePicture
+                : process.env.PUBLIC_URL + "/assets/default.png"
+            }
+            alt=""
+            className="shareProfileImg"
+          />
           <input
             type="text"
             className="shareInput"

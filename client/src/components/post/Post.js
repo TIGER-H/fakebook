@@ -7,6 +7,7 @@ const Post = ({ post }) => {
   const [likes, setLikes] = useState(post.likes.length);
   const [liked, setLiked] = useState(false);
   const [user, setUser] = useState({});
+  console.log(post);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -25,7 +26,15 @@ const Post = ({ post }) => {
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <img src="assets/1.png" alt="" className="postProfileImg" />
+            <img
+              src={
+                user.profilePicture
+                  ? user.profilePicture
+                  : process.env.PUBLIC_URL + "/assets/default.png"
+              }
+              alt=""
+              className="postProfileImg"
+            />
             <div className="postUserInfo">
               <span className="postUsername">{user.username}</span>
               <span className="postDate">{post.createdAt}</span>
@@ -37,7 +46,11 @@ const Post = ({ post }) => {
         </div>
         <div className="postCenter">
           <span className="postText">{post.description}</span>
-          <img src="assets/1.png" alt="" className="postImg" />
+          <img
+            src={post.img ? post.img : process.env.PUBLIC_URL + "/assets/1.png"}
+            alt=""
+            className="postImg"
+          />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">

@@ -9,6 +9,7 @@ import "./profile.css";
 const Profile = () => {
   const [user, setUser] = useState({});
   const { username } = useParams();
+  const PF = `${process.env.PUBLIC_URL}/assets/`;
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -19,7 +20,7 @@ const Profile = () => {
       console.log(data);
     };
     fetchUser();
-  }, []);
+  }, [username]);
 
   return (
     <div>
@@ -27,8 +28,20 @@ const Profile = () => {
       <div className="profile">
         <div className="profileTop">
           <div className="profileCover">
-            <img src="assets/cover.png" alt="" className="profileCoverImg" />
-            <img src="assets/1.png" alt="" className="profileAvatar" />
+            <img
+              src={
+                user.coverPicture ? user.coverPicture : PF + "cover.png"
+              }
+              alt=""
+              className="profileCoverImg"
+            />
+            <img
+              src={
+                user.profilePicture ? user.profilePicture : PF + "default.png"
+              }
+              alt=""
+              className="profileAvatar"
+            />
           </div>
           <div className="profileUserInfo">
             <span className="profileUsername">{user.username}</span>
