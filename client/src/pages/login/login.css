@@ -82,10 +82,14 @@
   color: #1877f2;
 }
 
+.signup {
+  align-self: center;
+}
+
 .loginSignupButton {
   height: 50px;
-  width: 60%;
-  align-self: center;
+  /* width: 60%; */
+  /* align-self: center; */
   border-radius: 10px;
   background-color: #42b72a;
   color: white;
@@ -94,4 +98,5 @@
   border: none;
   margin-bottom: 10px;
   padding: 0 16px;
+  cursor: pointer;
 }

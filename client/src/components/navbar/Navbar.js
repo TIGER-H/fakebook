@@ -1,4 +1,11 @@
-import { Search, Person, Chat, Notifications } from "@material-ui/icons";
+import {
+  Search,
+  Person,
+  Chat,
+  Notifications,
+  Home,
+  People,
+} from "@material-ui/icons";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
@@ -6,7 +13,7 @@ import "./navbar.css";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
-  
+
   return (
     <div className="Navbarcontainer">
       <div className="NavbarLeft">
@@ -20,8 +27,20 @@ const Navbar = () => {
       </div>
 
       <div className="NavbarCenter">
-        <div className="navfeed">Homepage</div>
-        <div className="navfriends">Friends</div>
+        <div className="navfeed">
+          <Link to="/">
+            <Home fontSize="large" color="primary">
+              Homepage
+            </Home>
+          </Link>
+        </div>
+        <div className="navfriends">
+          <Link>
+            <People fontSize="large">
+              Friends
+            </People>
+          </Link>
+        </div>
       </div>
 
       <div className="NavbarRight">

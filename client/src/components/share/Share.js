@@ -1,3 +1,4 @@
+import { Button } from "@material-ui/core";
 import { EmojiEmotions, Label, PermMedia, Room } from "@material-ui/icons";
 import axios from "axios";
 import React, { useContext, useRef, useState } from "react";
@@ -6,23 +7,24 @@ import "./share.css";
 
 const Share = () => {
   const { user } = useContext(AuthContext);
-  const description = useRef();
+  const [description, setDescription] = useState("");
+  // const description = useRef();
   const [file, setFile] = useState(null);
 
   const handleShare = async (e) => {
     e.preventDefault();
     const newPost = {
       userId: user._id,
-      description: description.current.value,
+      description,
     };
+    setDescription("");
     try {
       await axios.post("http://localhost:3001/api/post", newPost);
-      description = "";
     } catch (error) {
       console.log(error);
     }
   };
-  
+
   return (
     <div className="share">
       <div className="shareWrapper">
@@ -40,7 +42,8 @@ const Share = () => {
             type="text"
             className="shareInput"
             placeholder={`What's in your mind ${user.username}?`}
-            ref={description}
+            onChange={({ target }) => setDescription(target.value)}
+            value={description}
           />
         </div>
         <hr className="shareHr" />
@@ -70,7 +73,12 @@ const Share = () => {
               <span className="shareOptionText">Feeling</span>
             </div>
           </div>
-          <button type="submit" className="shareButton">
+          <button
+            type="submit"
+            variant="contained"
+            color="primary"
+            className="shareButton"
+          >
             Share
           </button>
         </form>

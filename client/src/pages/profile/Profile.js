@@ -12,11 +12,8 @@ const Profile = () => {
   const [user, setUser] = useState({});
   const { username } = useParams();
   const { user: currentUser } = useContext(AuthContext);
-  const [followed, setFollowed] = useState(
-    currentUser.following.includes(user?._id)
-  );
+  const [followed, setFollowed] = useState(false);
   const PF = `${process.env.PUBLIC_URL}/assets/`;
-  console.log(followed);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -27,6 +24,10 @@ const Profile = () => {
     };
     fetchUser();
   }, [username]);
+
+  useEffect(() => {
+    setFollowed(currentUser.following.includes(user?._id));
+  }, [currentUser.following, user?._id]);
 
   const handleFollow = async (e) => {
     e.preventDefault();

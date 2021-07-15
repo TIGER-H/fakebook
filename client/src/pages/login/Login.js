@@ -1,5 +1,6 @@
 import { CircularProgress } from "@material-ui/core";
 import React, { useContext, useRef } from "react";
+import { Link } from "react-router-dom";
 import { loginCall } from "../../apiCalls";
 import { AuthContext } from "../../context/AuthContext";
 import "./login.css";
@@ -16,7 +17,6 @@ const Login = () => {
       dispatch
     );
   };
-  console.log(user);
 
   return (
     <div className="login">
@@ -49,10 +49,11 @@ const Login = () => {
             </button>
             <span className="loginFindPassword">Forgot password?</span>
             <hr className="loginHr" />
-
-            <button className="loginSignupButton" onClick={() => {}}>
-              Create New Account
-            </button>
+            <Link to="/signup" className="signup">
+              <button className="loginSignupButton">
+                {isFetching ? <CircularProgress /> : "Create New Account"}
+              </button>
+            </Link>
           </form>
         </div>
       </div>
