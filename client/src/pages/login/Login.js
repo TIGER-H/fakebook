@@ -1,5 +1,5 @@
 import { CircularProgress } from "@material-ui/core";
-import React, { useContext, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { loginCall } from "../../apiCalls";
 import { AuthContext } from "../../context/AuthContext";
@@ -17,6 +17,11 @@ const Login = () => {
       dispatch
     );
   };
+
+  useEffect(() => {
+    const localData = JSON.parse(window.localStorage.getItem("loggedUser"));
+    dispatch({ type: "LOGIN_LOCAL", payload: localData });
+  }, []);
 
   return (
     <div className="login">

@@ -10,10 +10,23 @@ export const LoginSuccess = (user) => {
     payload: user,
   };
 };
+
+export const LoginLocal = (user) => {
+  return {
+    type: "LOGIN_LOCAL",
+    payload: user,
+  };
+};
+
 export const LoginFail = (error) => {
   return {
     type: "LOGIN_FAIL",
     payload: error,
+  };
+};
+export const LogOut = () => {
+  return {
+    type: "LOGOUT",
   };
 };
 

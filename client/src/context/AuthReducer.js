@@ -12,11 +12,23 @@ const AuthRecuder = (state, action) => {
         isFetching: false,
         error: false,
       };
+    case "LOGIN_LOCAL":
+      return {
+        user: action.payload,
+        isFetching: false,
+        error: false,
+      };
     case "LOGIN_FAIL":
       return {
         user: null,
         isFetching: false,
         error: action.payload,
+      };
+    case "LOGOUT":
+      return {
+        user: null,
+        isFetching: false,
+        error: false,
       };
     case "FOLLOW":
       return {

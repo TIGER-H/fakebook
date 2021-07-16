@@ -7,6 +7,7 @@ export const loginCall = async (userCredentials, dispatch) => {
       "http://localhost:3001/api/auth/login",
       userCredentials
     );
+    window.localStorage.setItem("loggedUser", JSON.stringify(res.data));
     dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
   } catch (error) {
     dispatch({ type: "LOGIN_FAIL", payload: error });

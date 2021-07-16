@@ -69,7 +69,7 @@ body {
   border-radius: 10px;
 }
 
-.navfriends{
+.navfriends {
   flex: 1;
   padding: 5px;
 }
@@ -110,6 +110,19 @@ body {
 
 .navbarUsername {
   padding-right: 10px;
+}
+
+.navbarLogout {
+  margin-right: 10px;
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.navbarLogout:hover{
+  background-color: #eee;
 }
 
 .navbarIcons {

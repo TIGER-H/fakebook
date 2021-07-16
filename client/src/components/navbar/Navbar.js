@@ -12,7 +12,12 @@ import { AuthContext } from "../../context/AuthContext";
 import "./navbar.css";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, dispatch } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    window.localStorage.clear();
+    dispatch({ type: "LOGOUT" });
+  };
 
   return (
     <div className="Navbarcontainer">
@@ -36,9 +41,7 @@ const Navbar = () => {
         </div>
         <div className="navfriends">
           <Link>
-            <People fontSize="large">
-              Friends
-            </People>
+            <People fontSize="large">Friends</People>
           </Link>
         </div>
       </div>
@@ -56,6 +59,9 @@ const Navbar = () => {
           />
           <span className="navbarUsername">{user.username}</span>
         </Link>
+        <button className="navbarLogout" onClick={handleLogout}>
+          Log out
+        </button>
         <div className="navbarIcons">
           <div className="navbarIconItem">
             <Person className="navbarIcon" />

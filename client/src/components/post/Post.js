@@ -52,6 +52,7 @@ const Post = ({ post }) => {
         data: { userId: currentUser._id },
       });
       setAnchorEl(null);
+
       // to refresh here
     } catch (error) {
       setAnchorEl(null);
