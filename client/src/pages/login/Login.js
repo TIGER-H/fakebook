@@ -51,7 +51,7 @@ const Login = () => {
             <hr className="loginHr" />
             <Link to="/signup" className="signup">
               <button className="loginSignupButton">
-                {isFetching ? <CircularProgress /> : "Create New Account"}
+                "Create New Account"
               </button>
             </Link>
           </form>

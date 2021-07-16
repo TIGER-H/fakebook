@@ -1,14 +1,12 @@
-import { Button } from "@material-ui/core";
 import { EmojiEmotions, Label, PermMedia, Room } from "@material-ui/icons";
 import axios from "axios";
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import "./share.css";
 
 const Share = () => {
   const { user } = useContext(AuthContext);
   const [description, setDescription] = useState("");
-  // const description = useRef();
   const [file, setFile] = useState(null);
 
   const handleShare = async (e) => {

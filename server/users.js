@@ -29,6 +29,7 @@ router.put("/:id", async (req, res) => {
     return res.status(403).json("Access denied!");
   }
 });
+
 // delete user
 router.delete("/:id", async (req, res) => {
   if (req.body.userId === req.params.id || req.body.isAdmin) {
@@ -59,6 +60,7 @@ router.get("/", async (req, res) => {
     res.status(500).json(error);
   }
 });
+
 // follow
 router.put("/:id/follow", async (req, res) => {
   if (req.body.userId !== req.params.id) {
