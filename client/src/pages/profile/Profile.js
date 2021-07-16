@@ -24,7 +24,7 @@ const Profile = () => {
       setFollowed(currentUser.following.includes(data._id));
     };
     fetchUser();
-  }, [username]);
+  }, [username, currentUser.following]);
 
   const handleFollow = async () => {
     try {

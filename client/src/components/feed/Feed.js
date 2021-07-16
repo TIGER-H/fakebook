@@ -11,16 +11,19 @@ const Feed = ({ username }) => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      // username ? go to profile page : home page
+      // username ? profile page : home page
       const res = username
         ? await axios.get("http://localhost:3001/api/post/profile/" + username)
         : await axios.get(
             "http://localhost:3001/api/post/timeline/" + user._id
           );
       // sort posts
+
       setPosts(
         res.data.sort((p1, p2) => {
-          return new Date(p1.createAt) - new Date(p2.createAt);
+          const date1 = new Date(p1.createdAt);
+          const date2 = new Date(p2.createdAt);
+          return date2 - date1;
         })
       );
     };
@@ -29,7 +32,9 @@ const Feed = ({ username }) => {
   return (
     <div className="feed">
       <div className="feedContainer">
-        {(!username || username === user.username) && <Share />}
+        {(!username || username === user.username) && (
+          <Share posts={posts} setPosts={setPosts} />
+        )}
         {posts.map((post) => (
           <Post key={post._id} post={post} />
         ))}

@@ -4,20 +4,37 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import "./share.css";
 
-const Share = () => {
+const Share = ({ posts, setPosts }) => {
   const { user } = useContext(AuthContext);
   const [description, setDescription] = useState("");
-  const [file, setFile] = useState(null);
+  const [inputVisible, setInputVisible] = useState(false);
+  const [inputSource, setInputSource] = useState("");
+
+  console.log(inputVisible);
 
   const handleShare = async (e) => {
     e.preventDefault();
     const newPost = {
       userId: user._id,
       description,
+      img: inputSource,
     };
+    console.log(newPost);
+    setInputVisible(false);
+    setInputSource("");
     setDescription("");
     try {
-      await axios.post("http://localhost:3001/api/post", newPost);
+      const { data } = await axios.post(
+        "http://localhost:3001/api/post",
+        newPost
+      );
+      setPosts(
+        posts.concat(data).sort((p1, p2) => {
+          const date1 = new Date(p1.createdAt);
+          const date2 = new Date(p2.createdAt);
+          return date2 - date1;
+        })
+      );
     } catch (error) {
       console.log(error);
     }
@@ -47,17 +64,13 @@ const Share = () => {
         <hr className="shareHr" />
         <form className="shareBottom" onSubmit={handleShare}>
           <div className="shareOptions">
-            <label htmlFor="file" className="shareOption">
+            <div
+              className="shareOption"
+              onClick={() => setInputVisible(!inputVisible)}
+            >
               <PermMedia className="shareIcon" />
               <span className="shareOptionText">Photo or Video</span>
-              <input
-                style={{ display: "none" }}
-                type="file"
-                id="file"
-                accept=".png,.jpg,.jpeg"
-                onChange={(e) => setFile(e.target.files[0])}
-              />
-            </label>
+            </div>
             <div className="shareOption">
               <Label className="shareIcon" />
               <span className="shareOptionText">Tag</span>
@@ -80,6 +93,15 @@ const Share = () => {
             Share
           </button>
         </form>
+        {inputVisible && (
+          <input
+            className="shareSource"
+            type="url"
+            value={inputSource}
+            placeholder="源地址"
+            onChange={({ target }) => setInputSource(target.value)}
+          />
+        )}
       </div>
     </div>
   );

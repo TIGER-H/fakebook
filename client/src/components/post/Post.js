@@ -1,15 +1,18 @@
-import { Chat, Favorite, MoreVert, ThumbUp } from "@material-ui/icons";
+import { Favorite, MoreVert, ThumbUp } from "@material-ui/icons";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import "./post.css";
+import TimeAgo from "timeago-react";
+import { Button, Menu, MenuItem } from "@material-ui/core";
 
 const Post = ({ post }) => {
   const [likes, setLikes] = useState(post.likes.length);
   const [liked, setLiked] = useState(false);
   const [user, setUser] = useState({});
   const { user: currentUser } = useContext(AuthContext);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   useEffect(() => {
     setLiked(post.likes.includes(currentUser._id));
@@ -23,7 +26,7 @@ const Post = ({ post }) => {
       setUser(data);
     };
     fetchUser();
-  }, [post.userId]);
+  }, [post.userId, post.createdAt]);
 
   const handleLikeClick = async () => {
     try {
@@ -33,6 +36,27 @@ const Post = ({ post }) => {
       setLikes(liked ? likes - 1 : likes + 1);
       setLiked(!liked);
     } catch (error) {}
+  };
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`http://localhost:3001/api/post/${post._id}`, {
+        data: { userId: currentUser._id },
+      });
+      setAnchorEl(null);
+      // to refresh here
+    } catch (error) {
+      setAnchorEl(null);
+      console.log(error);
+    }
   };
 
   return (
@@ -53,20 +77,36 @@ const Post = ({ post }) => {
             </Link>
             <div className="postUserInfo">
               <span className="postUsername">{user.username}</span>
-              <span className="postDate">{post.createdAt}</span>
+              <TimeAgo
+                datetime={post.createdAt}
+                locale="zh_CN"
+                className="postDate"
+              ></TimeAgo>
             </div>
           </div>
           <div className="postTopRight">
-            <MoreVert />
+            <Button
+              aria-controls="tr-menu"
+              aria-haspopup="true"
+              onClick={handleClick}
+            >
+              <MoreVert />
+            </Button>
+            <Menu
+              id="tr-menu"
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              {user._id === currentUser._id && (
+                <MenuItem onClick={handleDelete}>删除</MenuItem>
+              )}
+            </Menu>
           </div>
         </div>
         <div className="postCenter">
-          <span className="postText">{post.description}</span>
-          <img
-            src={post.img ? post.img : process.env.PUBLIC_URL + "/assets/1.png"}
-            alt=""
-            className="postImg"
-          />
+          <p className="postText">{post.description}</p>
+          <img src={post.img} alt="" className="postImg" />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
