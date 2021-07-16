@@ -41,7 +41,7 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [passwordValidate, setPasswordValidate] = useState("");
   const [usernameValidate, setUsernameValidate] = useState(true);
-  const [emailValidate, setEmailValidate] = useState(false);
+  const [emailValidate, setEmailValidate] = useState(true);
   const history = useHistory();
 
   const handleSignup = async (e) => {
@@ -56,7 +56,8 @@ export default function SignUp() {
       setPasswordValidate("");
       history.push("/");
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data);
+      setEmailValidate(false);
     }
   };
 
@@ -113,7 +114,12 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 value={email}
-                onChange={({ target }) => setEmail(target.value)}
+                onChange={({ target }) => {
+                  setEmailValidate(true);
+                  return setEmail(target.value);
+                }}
+                error={!emailValidate}
+                helperText={emailValidate ? "" : `Email已存在！`}
               />
             </Grid>
             <Grid item xs={12}>

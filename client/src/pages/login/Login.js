@@ -50,9 +50,7 @@ const Login = () => {
             <span className="loginFindPassword">Forgot password?</span>
             <hr className="loginHr" />
             <Link to="/signup" className="signup">
-              <button className="loginSignupButton">
-                "Create New Account"
-              </button>
+              <button className="loginSignupButton">Create New Account</button>
             </Link>
           </form>
         </div>

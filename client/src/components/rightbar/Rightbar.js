@@ -15,6 +15,7 @@ const Rightbar = () => {
         const { data } = await axios.get(
           "http://localhost:3001/api/users/friends/" + user._id
         );
+        console.log("getFriends!");
         setFriends(data);
       } catch (error) {
         console.log(error);

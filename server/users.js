@@ -119,8 +119,18 @@ router.get("/friends/:userId", async (req, res) => {
     friends.map((u) => {
       const { _id, username, profilePicture } = u;
       friendslist.push({ _id, username, profilePicture });
-      res.status(200).json(friendslist);
     });
+    res.status(200).json(friendslist);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+//get all users
+router.get("/all", async (req, res) => {
+  try {
+    const users = await User.find({});
+    res.status(200).json(users);
   } catch (error) {
     res.status(500).json(error);
   }

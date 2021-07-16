@@ -11,7 +11,7 @@ import "./profile.css";
 const Profile = () => {
   const [user, setUser] = useState({});
   const { username } = useParams();
-  const { user: currentUser } = useContext(AuthContext);
+  const { user: currentUser, dispatch } = useContext(AuthContext);
   const [followed, setFollowed] = useState(false);
   const PF = `${process.env.PUBLIC_URL}/assets/`;
 
@@ -21,32 +21,30 @@ const Profile = () => {
         `http://localhost:3001/api/users?username=${username}`
       );
       setUser(data);
+      setFollowed(currentUser.following.includes(data._id));
     };
     fetchUser();
   }, [username]);
 
-  useEffect(() => {
-    setFollowed(currentUser.following.includes(user?._id));
-  }, [currentUser.following, user?._id]);
-
-  const handleFollow = async (e) => {
-    e.preventDefault();
+  const handleFollow = async () => {
     try {
       if (followed) {
         await axios.put(
           "http://localhost:3001/api/users/" + user._id + "/unfollow",
           { userId: currentUser._id }
         );
+        dispatch({ type: "UNFOLLOW", payload: user._id });
       } else {
         await axios.put(
           "http://localhost:3001/api/users/" + user._id + "/follow",
           { userId: currentUser._id }
         );
+        dispatch({ type: "FOLLOW", payload: user._id });
       }
+      setFollowed(!followed);
     } catch (error) {
       console.log(error);
     }
-    setFollowed(!followed);
   };
 
   return (

@@ -8,11 +8,14 @@ router.post("/signup", async (req, res) => {
   try {
     // const salt = await bcrypt.genSalt(saltRounds)
     const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
+    const email = await User.findOne({ email: req.body.email });
+    email && res.status(400).json(`Email:${email.email} 被占用！`);
     const newUser = new User({
       username: req.body.username,
       email: req.body.email,
       password: hashedPassword,
     });
+
     const user = await newUser.save();
     res.status(200).json(user);
   } catch (error) {

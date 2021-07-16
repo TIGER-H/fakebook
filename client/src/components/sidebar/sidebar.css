@@ -52,6 +52,11 @@
   display: flex;
   align-items: center;
   margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+}
+.sidebarFriend:hover {
+  background-color: #e4e6eb;
 }
 
 .sidebarFriendImg {
@@ -60,6 +65,10 @@
   border-radius: 50%;
   object-fit: cover;
   margin-right: 15px;
+}
+
+.sidebarFriendName:link {
+  color: black;
 }
 
 .sidebarHr {
