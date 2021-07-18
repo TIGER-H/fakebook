@@ -13,12 +13,12 @@ router.post("/", async (req, res) => {
     res.status(500).json(error);
   }
 });
-// get conversation of a user
+// 获取user的所有conversation
 router.get("/:userId", async (req, res) => {
   try {
     const conversation = await Conversation.find({
       members: {
-        $in: [req.params.id],
+        $in: [req.params.userId],
       },
     });
     res.status(200).json(conversation);
