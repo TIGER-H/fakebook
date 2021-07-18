@@ -19,6 +19,7 @@
 .rightbarFriend {
   display: flex;
   align-items: center;
+  margin-top: 20px;
 }
 
 .rightbarProfileImgContainer {
@@ -44,6 +45,10 @@
   right: -5px;
 }
 
-.rightbarUsername{
-    font-weight: 500;
+.rightbarUsername {
+  font-weight: 500;
+}
+
+a {
+  color: black;
 }

@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
 import Signup from "./pages/signup/Signup";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
+import Friends from "./pages/friends/Friends";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -21,6 +22,7 @@ function App() {
         <Route path="/signup">
           <Signup />
         </Route>
+        <Route path="/friends">{user ? <Friends /> : <Login />}</Route>
       </Router>
     </div>
   );

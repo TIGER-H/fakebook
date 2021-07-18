@@ -31,8 +31,13 @@ const Sidebar = () => {
             <span className="sidebarListText">Feed</span>
           </li>
           <li className="sidebarItem">
-            <Chat className="sidebarIcon" />
-            <span className="sidebarListText">Chat</span>
+            <Link
+              to="/friends"
+              style={{ display: "flex", alignItems: "center" }}
+            >
+              <Chat className="sidebarIcon" />
+              <span className="sidebarListText">Chat</span>
+            </Link>
           </li>
           <li className="sidebarItem">
             <PlayCircleFilled className="sidebarIcon" />

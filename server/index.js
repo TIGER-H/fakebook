@@ -1,11 +1,12 @@
-require('dotenv').config();
-const express = require('express');
+require("dotenv").config();
+const express = require("express");
 const app = express();
-const mongoose = require('mongoose');
-const userRoute = require('./users');
-const authRoute = require('./auth');
-const postRoute = require('./posts');
-const cors = require('cors')
+const mongoose = require("mongoose");
+const userRoute = require("./routes/users");
+const authRoute = require("./routes/auth");
+const postRoute = require("./routes/posts");
+const conversationRoute = require("./routes/conversations");
+const cors = require("cors");
 
 const url = process.env.MONGO_URL;
 
@@ -21,17 +22,18 @@ mongoose
     console.log(`connected to MongoDB`);
   })
   .catch((error) => {
-    console.log('error connecting to MongoDB:', error.message);
+    console.log("error connecting to MongoDB:", error.message);
   });
 
 app.use(express.json());
-app.use(cors())
-app.use('/api/users', userRoute);
-app.use('/api/auth', authRoute);
-app.use('/api/post', postRoute);
+app.use(cors());
+app.use("/api/users", userRoute);
+app.use("/api/auth", authRoute);
+app.use("/api/post", postRoute);
+app.use("/api/conversation", conversationRoute);
 
-app.get('/', (request, response) => {
-  response.send('<h1>Hello world</h1>');
+app.get("/", (request, response) => {
+  response.send("<h1>Hello world</h1>");
 });
 
 app.listen(process.env.PORT, () => {
