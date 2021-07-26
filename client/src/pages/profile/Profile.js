@@ -1,5 +1,4 @@
 import { Add, Remove } from "@material-ui/icons";
-import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Feed from "../../components/feed/Feed";
@@ -7,6 +6,7 @@ import Navbar from "../../components/navbar/Navbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { AuthContext } from "../../context/AuthContext";
 import "./profile.css";
+import userService from "../../services/users";
 
 const Profile = () => {
   const [user, setUser] = useState({});
@@ -16,29 +16,20 @@ const Profile = () => {
   const PF = `${process.env.PUBLIC_URL}/assets/`;
 
   useEffect(() => {
-    const fetchUser = async () => {
-      const { data } = await axios.get(
-        `http://localhost:3001/api/users?username=${username}`
-      );
+    // returned a Promise.
+    userService.getOneByUsername(username).then((data) => {
       setUser(data);
       setFollowed(currentUser.following.includes(data._id));
-    };
-    fetchUser();
+    });
   }, [username, currentUser.following]);
 
   const handleFollow = async () => {
     try {
       if (followed) {
-        await axios.put(
-          "http://localhost:3001/api/users/" + user._id + "/unfollow",
-          { userId: currentUser._id }
-        );
+        userService.unfollow(user._id, currentUser._id);
         dispatch({ type: "UNFOLLOW", payload: user._id });
       } else {
-        await axios.put(
-          "http://localhost:3001/api/users/" + user._id + "/follow",
-          { userId: currentUser._id }
-        );
+        userService.follow(user._id, currentUser._id);
         dispatch({ type: "FOLLOW", payload: user._id });
       }
       setFollowed(!followed);

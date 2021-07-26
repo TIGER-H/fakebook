@@ -9,9 +9,7 @@ const Share = ({ posts, setPosts }) => {
   const [description, setDescription] = useState("");
   const [inputVisible, setInputVisible] = useState(false);
   const [inputSource, setInputSource] = useState("");
-
-  console.log(inputVisible);
-
+  
   const handleShare = async (e) => {
     e.preventDefault();
     const newPost = {
