@@ -6,6 +6,7 @@ import Signup from "./pages/signup/Signup";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import Friends from "./pages/friends/Friends";
+import PortfolioPage from "./pages/portfolio/Portfolio";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -23,6 +24,9 @@ function App() {
           <Signup />
         </Route>
         <Route path="/friends">{user ? <Friends /> : <Login />}</Route>
+        <Route path="/portfolio">
+          <PortfolioPage />
+        </Route>
       </Router>
     </div>
   );

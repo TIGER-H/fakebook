@@ -48,8 +48,13 @@ const Sidebar = () => {
             <span className="sidebarListText">Bookmark</span>
           </li>
           <li className="sidebarItem">
-            <CalendarToday className="sidebarIcon" />
-            <span className="sidebarListText">Events</span>
+            <Link
+              to="/portfolio"
+              style={{ display: "flex", alignItems: "center" }}
+            >
+              <CalendarToday className="sidebarIcon" />
+              <span className="sidebarListText">Portfolio</span>
+            </Link>
           </li>
           <li className="sidebarItem">
             <People className="sidebarIcon" />

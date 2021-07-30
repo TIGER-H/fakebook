@@ -10,7 +10,7 @@
   overflow-y: scroll;
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 5px;
   display: none;
 }
@@ -21,7 +21,7 @@
 ::-webkit-scrollbar-thumb {
   background-color: rgb(179, 179, 179);
   border-radius: 5px;
-}
+} */
 
 .sidebarWrapper {
   padding: 20px;
