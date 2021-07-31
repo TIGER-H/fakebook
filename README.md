@@ -8,4 +8,4 @@ todo
 
 
 - portfolio
-  - [ ] slides
+  - [x] slides
