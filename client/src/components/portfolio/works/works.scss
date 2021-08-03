@@ -1,3 +1,5 @@
+@import "../../../pages/portfolio/global.scss";
+
 .works {
   background-color: #ffa38b;
   display: flex;
@@ -9,6 +11,10 @@
     cursor: pointer;
     color: white;
     z-index: 10;
+
+    @include mobile {
+      display: none;
+    }
 
     &.left {
       left: 100px;
@@ -26,6 +32,12 @@
     left: 0;
     transition: all 1s ease;
 
+    @include mobile {
+      height: 100vh;
+      flex-direction: column;
+      justify-content: center;
+    }
+
     .container {
       width: 100vw;
       display: flex;
@@ -41,6 +53,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        overflow-x: hidden;
+
+        @include mobile {
+          width: 90%;
+          height: 250px;
+        }
 
         .left {
           flex: 1;
@@ -64,6 +82,13 @@
               display: flex;
               justify-content: center;
               align-items: center;
+              // overflow: hidden;
+
+              img{
+                height: 100%;
+                width: 100%;
+                object-fit: contain;
+              }
             }
 
             h2 {
@@ -91,7 +116,9 @@
           align-items: center;
 
           img {
-            border-radius: 20px;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
           }
         }
       }

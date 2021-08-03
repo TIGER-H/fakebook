@@ -10,6 +10,11 @@
   overflow-y: scroll;
 }
 
+.sidebar::-webkit-scrollbar{
+  width: 5px;
+  display: none;
+}
+
 /* ::-webkit-scrollbar {
   width: 5px;
   display: none;
