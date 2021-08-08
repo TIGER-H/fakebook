@@ -44,8 +44,13 @@ const Sidebar = () => {
             <span className="sidebarListText">Video</span>
           </li>
           <li className="sidebarItem">
-            <Bookmark className="sidebarIcon" />
-            <span className="sidebarListText">Bookmark</span>
+            <Link
+              to="/quotes"
+              style={{ display: "flex", alignItems: "center" }}
+            >
+              <Bookmark className="sidebarIcon" />
+              <span className="sidebarListText">Quotes</span>
+            </Link>
           </li>
           <li className="sidebarItem">
             <Link

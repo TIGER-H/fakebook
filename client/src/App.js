@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import Friends from "./pages/friends/Friends";
 import PortfolioPage from "./pages/portfolio/Portfolio";
+import { Quote } from "./pages/quotes/quote";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -26,6 +27,9 @@ function App() {
         <Route path="/friends">{user ? <Friends /> : <Login />}</Route>
         <Route path="/portfolio">
           <PortfolioPage />
+        </Route>
+        <Route path="/quotes">
+          <Quote />
         </Route>
       </Router>
     </div>

@@ -1,0 +1,69 @@
+.quote-box {
+  height: 100vh;
+  width: 100vw;
+  background-color: #16a085;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Raleway", sans-serif;
+
+  .quote-text {
+    width: 450px;
+    background-color: #fff;
+    padding: 40px 50px;
+    border-radius: 10px;
+
+    .quoteText {
+      text-align: center;
+      width: 450px;
+      height: auto;
+      clear: both;
+      font-weight: 500;
+      font-size: 1.75em;
+    }
+
+    .quoteAuthor {
+      width: 450px;
+      margin: auto;
+      display: block;
+      text-align: right;
+      clear: both;
+      padding-top: 20px;
+      font-size: 1em;
+    }
+
+    .quoteButtons {
+      width: 450px;
+      margin: auto;
+
+      .quoteButton {
+        display: flex;
+        align-items: center;
+        height: 38px;
+        border: none;
+        border-radius: 3px;
+        color: #fff;
+        background-color: #333;
+        outline: none;
+        font-size: 0.85em;
+        padding: 8px 18px;
+        margin-top: 30px;
+        opacity: 1;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.9;
+        }
+
+        &:nth-child(1),
+        &:nth-child(2) {
+          float: left;
+          margin-right: 5px;
+        }
+        &.newQuote {
+          float: right;
+        }
+      }
+    }
+  }
+}

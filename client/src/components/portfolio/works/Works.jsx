@@ -36,7 +36,7 @@ export const Works = () => {
   };
 
   return (
-    <div className="works">
+    <div className="works" id="works">
       <div className="arrow left" onClick={() => handleClick("left")}>
         <KeyboardArrowLeft
           // style={{
