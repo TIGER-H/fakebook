@@ -10,7 +10,7 @@
   overflow-y: scroll;
 }
 
-.sidebar::-webkit-scrollbar{
+.sidebar::-webkit-scrollbar {
   width: 5px;
   display: none;
 }
@@ -42,6 +42,11 @@
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+}
+
+.sidebarItem a {
+  display: flex;
+  align-items: center;
 }
 
 .sidebarIcon {

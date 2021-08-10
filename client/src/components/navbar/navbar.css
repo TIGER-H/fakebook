@@ -2,6 +2,7 @@ body {
   margin: 0;
 }
 .Navbarcontainer {
+  font-family: "Roboto", sans-serif;
   height: 56px;
   width: 100%;
   background-color: white;
@@ -121,7 +122,7 @@ body {
   background-color: #fff;
 }
 
-.navbarLogout:hover{
+.navbarLogout:hover {
   background-color: #eee;
 }
 

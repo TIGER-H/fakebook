@@ -4,7 +4,9 @@ import {
   Bookmark,
   CalendarToday,
   Chat,
+  Dashboard,
   ExpandMore,
+  Notes,
   People,
   PlayCircleFilled,
   RssFeed,
@@ -31,10 +33,7 @@ const Sidebar = () => {
             <span className="sidebarListText">Feed</span>
           </li>
           <li className="sidebarItem">
-            <Link
-              to="/friends"
-              style={{ display: "flex", alignItems: "center" }}
-            >
+            <Link to="/friends">
               <Chat className="sidebarIcon" />
               <span className="sidebarListText">Chat</span>
             </Link>
@@ -44,26 +43,28 @@ const Sidebar = () => {
             <span className="sidebarListText">Video</span>
           </li>
           <li className="sidebarItem">
-            <Link
-              to="/quotes"
-              style={{ display: "flex", alignItems: "center" }}
-            >
+            <Link to="/quotes">
               <Bookmark className="sidebarIcon" />
               <span className="sidebarListText">Quotes</span>
             </Link>
           </li>
           <li className="sidebarItem">
-            <Link
-              to="/portfolio"
-              style={{ display: "flex", alignItems: "center" }}
-            >
+            <Link to="/portfolio">
               <CalendarToday className="sidebarIcon" />
               <span className="sidebarListText">Portfolio</span>
             </Link>
           </li>
           <li className="sidebarItem">
-            <People className="sidebarIcon" />
-            <span className="sidebarListText">Groups</span>
+            <Link to="/memo">
+              <Notes className="sidebarIcon" />
+              <span className="sidebarListText">MD Editor</span>
+            </Link>
+          </li>
+          <li className="sidebarItem">
+            <Link to="/dashboard">
+              <Dashboard className="sidebarIcon" />
+              <span className="sidebarListText">Dashboard</span>
+            </Link>
           </li>
           <li className="sidebarItem">
             <ExpandMore className="sidebarIcon" />

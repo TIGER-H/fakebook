@@ -8,6 +8,8 @@ import { AuthContext } from "./context/AuthContext";
 import Friends from "./pages/friends/Friends";
 import PortfolioPage from "./pages/portfolio/Portfolio";
 import { Quote } from "./pages/quotes/quote";
+import { Memo } from "./pages/memo/Memo";
+import { Dashboard } from "./pages/dashboard/Dashboard";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -30,6 +32,12 @@ function App() {
         </Route>
         <Route path="/quotes">
           <Quote />
+        </Route>
+        <Route path="/memo">
+          <Memo />
+        </Route>
+        <Route path="/dashboard">
+          <Dashboard />
         </Route>
       </Router>
     </div>
