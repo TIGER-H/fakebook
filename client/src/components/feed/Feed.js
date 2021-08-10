@@ -4,13 +4,16 @@ import Share from "../share/Share";
 import Post from "../post/Post";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
+import { Loading } from "../loading/Loading";
 
 const Feed = ({ username }) => {
   const [posts, setPosts] = useState([]);
   const { user } = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
+      setIsLoading(true);
       // username ? profile page : home page
       const res = username
         ? await axios.get("http://localhost:3001/api/post/profile/" + username)
@@ -26,6 +29,7 @@ const Feed = ({ username }) => {
           return date2 - date1;
         })
       );
+      setIsLoading(false);
     };
     fetchPosts();
   }, [username, user._id]);
@@ -35,9 +39,11 @@ const Feed = ({ username }) => {
         {(!username || username === user.username) && (
           <Share posts={posts} setPosts={setPosts} />
         )}
-        {posts.map((post) => (
-          <Post key={post._id} post={post} />
-        ))}
+        {isLoading ? (
+          <Loading type="balls" />
+        ) : (
+          posts.map((post) => <Post key={post._id} post={post} />)
+        )}
       </div>
     </div>
   );

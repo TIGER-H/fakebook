@@ -12,6 +12,14 @@ export const Loading = ({ type }) => {
       <div className="topSkIcon"></div>
     </div>;
   };
+  const RightBarSkeleton = () => (
+    <div className="rightSk">
+      <div className="rightSkItem">
+        <div className="rightSkAvatar"></div>
+        <div className="rightSkUsername"></div>
+      </div>
+    </div>
+  );
   const MenuSkeleton = () => (
     <div className="menuSk">
       <div className="menuSkItem"></div>
@@ -33,5 +41,7 @@ export const Loading = ({ type }) => {
       return <Balls />;
     case "menusk":
       return Array(COUNT).fill(<MenuSkeleton />);
+    case "rightSk":
+      return Array(COUNT).fill(<RightBarSkeleton />);
   }
 };

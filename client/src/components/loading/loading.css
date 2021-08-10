@@ -1,17 +1,29 @@
-.menuSk {
+.rightSk {
   animation: sk 1s ease infinite alternate;
 }
 
-.menuSkItem {
-  width: 24px;
-  height: 24px;
+.rightSkItem {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.rightSkItem .rightSkAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   background-color: red;
+  margin-right: 10px;
+}
+.rightSkItem .rightSkUsername {
+  height: 30px;
+  width: 200px;
+  background-color: aquamarine;
 }
 
 .ballsLoading {
-  height: 100vh;
   display: flex;
-  align-items: center;
+  margin-top: 50px;
   justify-content: center;
 }
 
