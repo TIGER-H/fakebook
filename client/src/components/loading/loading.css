@@ -1,0 +1,49 @@
+.menuSk {
+  animation: sk 1s ease infinite alternate;
+}
+
+.menuSkItem {
+  width: 24px;
+  height: 24px;
+  background-color: red;
+}
+
+.ballsLoading {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ballsLoading .balls {
+  display: flex;
+}
+
+.ball {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgb(117, 78, 78);
+  margin-right: 10px;
+  animation: ball 0.5s ease infinite alternate;
+}
+
+.ball2 {
+  animation-delay: 0.2s;
+}
+
+.ball3 {
+  animation-delay: 0.3s;
+}
+
+@keyframes ball {
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes sk {
+  to {
+    opacity: 0.5;
+  }
+}
