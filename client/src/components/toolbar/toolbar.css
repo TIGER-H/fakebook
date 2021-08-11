@@ -1,0 +1,95 @@
+.a-bold::before {
+  content: "B";
+  font-style: normal;
+}
+
+.a-italic::before {
+  content: "I";
+  font-style: normal;
+}
+
+.toolbarMenu {
+  height: 50px;
+  width: 80%;
+}
+
+.toolbarIcons {
+  display: flex;
+}
+
+.toolbarTop .toolbarIcon {
+  list-style: none;
+  width: 28px;
+  height: 28px;
+  border: 1px solid coral;
+  margin-right: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.toolbarInline {
+  position: absolute;
+}
+
+.toolbarInline .toolbarIcons .toolbarIcon:first-child {
+  border-bottom-left-radius: 3px;
+  border-right: none;
+}
+.toolbarInline .toolbarIcons .toolbarIcon:last-child {
+  border-bottom-right-radius: 3px;
+}
+
+.toolbarInline .toolbarIcons {
+  margin: 0;
+  padding: 0;
+  width: 72px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  /* border: 1px solid black; */
+}
+
+.toolbarInline .toolbarIcons .toolbarIcon {
+  list-style: none;
+  z-index: 10;
+  font-size: 30px;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  border-bottom: 3px solid #444;
+  transition: all 0.3s ease;
+}
+
+.toolbarInline .toolbarIcons .toolbarIcon:hover,
+.toolbarInline .toolbarIcons .toolbarIcon:active {
+  color: coral;
+  border-color: coral;
+}
+
+.toolbarInline .toolbarIcons::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  margin-left: -5px;
+  border-top: 5px solid #444;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+}
+
+.toolbarIcon:hover {
+  opacity: 0.5;
+}
+
+.toolbarTop {
+  margin: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.toolbarTop .toolbarIcons {
+  margin-left: 10px;
+}

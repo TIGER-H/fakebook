@@ -8,12 +8,22 @@
     flex: 4;
     border: 1px solid black;
 
+    blockquote{
+      border-left: 3px solid coral;
+      padding-left: 15px;
+    }
+
     .DraftEditor-root {
       border: 1px solid coral;
+      width: 500px;
+      min-height: 300px;
+      height: auto;
+      max-height: 500px;
+      overflow-y: scroll;
+      margin: 0 auto;
+
       .DraftEditor-editorContainer {
-        width: 100%;
-        height: auto;
-        margin: 0 auto;
+        overflow-y: hidden;
       }
     }
   }

@@ -3,8 +3,14 @@ import * as marked from "marked";
 import { useEffect, useState } from "react";
 import DOMPurify from "dompurify";
 import Prism from "prismjs";
-import Draft from "draft-js";
+import Draft, { RichUtils } from "draft-js";
 import "draft-js/dist/Draft.css";
+import {
+  Toolbar_inline,
+  Toolbar_side,
+  Toolbar_top,
+} from "../../components/toolbar/Toolbar";
+import { getSelectionPosition, getSelectionRange } from "./utils/selection";
 
 export const Memo = () => {
   const [raw, setRaw] = useState(placeholder);
@@ -51,20 +57,25 @@ const Preview = ({ toPreview }) => {
 };
 
 const MyEditor = (props) => {
+  const [showInlineToolBar, setShowInlineToolBar] = useState(false);
+  const [position, setPosition] = useState({});
   const [editorState, setEditorState] = useState(() =>
     Draft.EditorState.createEmpty()
   );
-  console.log(editorState.getCurrentContent().toJS());
-  console.log(Draft.convertToRaw(editorState.getCurrentContent()));
 
   useEffect(() => {
-    const blockFromHTML = Draft.convertFromHTML(props.sampleHTML);
-    const state = Draft.ContentState.createFromBlockArray(
-      blockFromHTML.contentBlocks,
-      blockFromHTML.entityMap
-    );
-    setEditorState(Draft.EditorState.createWithContent(state));
-  }, []);
+    if (!editorState.getSelection().isCollapsed()) {
+      const selectionRange = getSelectionRange();
+      const selectionPosition = getSelectionPosition(selectionRange);
+      setShowInlineToolBar(true);
+      setPosition({
+        top: selectionPosition.offsetTop,
+        left: selectionPosition.offsetLeft,
+      });
+    } else {
+      setShowInlineToolBar(false);
+    }
+  }, [editorState]);
 
   const handleKeyCommand = (cmd, editorState) => {
     const newState = Draft.RichUtils.handleKeyCommand(editorState, cmd);
@@ -75,20 +86,31 @@ const MyEditor = (props) => {
     return "not-handled";
   };
 
-  const onBoldClick = () => {
-    const newState = Draft.RichUtils.toggleInlineStyle(editorState, "BOLD");
+  const onInlineStyle = (inlineStyle) => {
+    const newState = RichUtils.toggleInlineStyle(editorState, inlineStyle);
+    setEditorState(newState);
+  };
+
+  const onBlockStyle = (blockType) => {
+    const newState = RichUtils.toggleBlockType(editorState, blockType);
     setEditorState(newState);
   };
 
   return (
-    <div className="myEditor">
-      <button onClick={onBoldClick}>
-        <strong>B</strong>
-      </button>
+    <div className="myEditor" id="richEditor">
+      {showInlineToolBar ? (
+        <Toolbar_inline
+          editorState={editorState}
+          onToggle={onInlineStyle}
+          pos={position}
+        />
+      ) : null}
+      <Toolbar_top editorState={editorState} onToggle={onBlockStyle} />
       <Draft.Editor
         editorState={editorState}
         onChange={setEditorState}
         handleKeyCommand={handleKeyCommand}
+        placeholder="Write something..."
       />
     </div>
   );
