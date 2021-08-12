@@ -41,7 +41,12 @@
 .sidebarItem {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.sidebarItem:hover {
+  background-color: #e4e6eb;
+  border-radius: 10px;
 }
 
 .sidebarItem a {
@@ -60,8 +65,8 @@
 }
 
 .sidebarFriend {
-  display: flex;
-  align-items: center;
+  /* display: flex;
+  align-items: center; */
   margin: 10px 0;
   padding: 10px;
   border-radius: 10px;
@@ -76,6 +81,11 @@
   border-radius: 50%;
   object-fit: cover;
   margin-right: 15px;
+}
+
+.sidebarFriendName {
+  display: flex;
+  align-items: center;
 }
 
 .sidebarFriendName:link {

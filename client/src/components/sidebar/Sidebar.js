@@ -39,8 +39,10 @@ const Sidebar = () => {
             </Link>
           </li>
           <li className="sidebarItem">
-            <PlayCircleFilled className="sidebarIcon" />
-            <span className="sidebarListText">Video</span>
+            <Link to="/video">
+              <PlayCircleFilled className="sidebarIcon" />
+              <span className="sidebarListText">Video</span>
+            </Link>
           </li>
           <li className="sidebarItem">
             <Link to="/quotes">
@@ -77,15 +79,15 @@ const Sidebar = () => {
             {users &&
               users.map((u) => (
                 <li key={u._id} className="sidebarFriend">
-                  <img
-                    src="assets/1.png"
-                    alt="profilepic"
-                    className="sidebarFriendImg"
-                  />
                   <Link
                     to={`/profile/${u.username}`}
                     className="sidebarFriendName"
                   >
+                    <img
+                      src="assets/1.png"
+                      alt="profilepic"
+                      className="sidebarFriendImg"
+                    />
                     {u.username}
                   </Link>
                 </li>

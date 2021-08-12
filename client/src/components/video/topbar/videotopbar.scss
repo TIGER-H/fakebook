@@ -1,0 +1,75 @@
+.videoTopbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 5;
+  color: white;
+  transition: all 1s ease;
+  background: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.5) 50%);
+
+  &.scrolled {
+    background-color: black;
+  }
+
+  .videoTopbarContainer {
+    padding: 0 50px;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+
+    .videoTopbarLeft {
+      display: flex;
+      align-items: center;
+
+      img {
+        height: 25px;
+        margin-right: 20px;
+      }
+
+      span {
+        font-size: 16px;
+        margin-right: 20px;
+        cursor: pointer;
+      }
+    }
+
+    .videoTopbarRight {
+      display: flex;
+      align-items: center;
+
+      .topbarProfile {
+        span {
+          padding: 10px;
+          cursor: pointer;
+        }
+
+        &:hover {
+          .topbar-options {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            background-color: black;
+          }
+        }
+
+        .topbar-options {
+          display: none;
+          border-radius: 5px;
+        }
+      }
+
+      .icon {
+        margin: 0 15px;
+        cursor: pointer;
+      }
+
+      img {
+        margin: 0 15px;
+        height: 30px;
+        width: 30px;
+        border-radius: 5px;
+        object-fit: cover;
+      }
+    }
+  }
+}

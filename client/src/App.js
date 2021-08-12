@@ -10,6 +10,7 @@ import PortfolioPage from "./pages/portfolio/Portfolio";
 import { Quote } from "./pages/quotes/quote";
 import { Memo } from "./pages/memo/Memo";
 import { Dashboard } from "./pages/dashboard/Dashboard";
+import { Video } from "./pages/video/Video";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -38,6 +39,9 @@ function App() {
         </Route>
         <Route path="/dashboard">
           <Dashboard />
+        </Route>
+        <Route path="/video">
+          <Video />
         </Route>
       </Router>
     </div>

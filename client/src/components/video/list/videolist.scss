@@ -1,0 +1,42 @@
+.videoList {
+  width: 100%;
+  margin-top: 10px;
+
+  .listTitle {
+    color: white;
+    font-size: 20px;
+    margin-left: 50px;
+  }
+
+  .listWrapper {
+    position: relative;
+
+    .sliderArrow {
+      width: 50px;
+      height: 100%;
+      color: white;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      background-color: rgba(24, 20, 20, 0.5);
+      z-index: 99;
+
+      &.left {
+        left: 0;
+      }
+
+      &.right {
+        right: 0;
+      }
+    }
+
+    .container {
+      display: flex;
+      width: max-content;
+      margin-left: 50px;
+      transition: all 1s ease;
+      position: relative;
+    }
+  }
+}
