@@ -1,0 +1,22 @@
+.dashboard {
+  .logo {
+    width: 200px;
+    &::after {
+      content: " Admin";
+    }
+  }
+
+  .searchbar {
+    display: none;
+  }
+
+  .NavbarCenter {
+    display: none;
+  }
+
+  .NavbarRight {
+    .navbarLogout {
+      display: none;
+    }
+  }
+}

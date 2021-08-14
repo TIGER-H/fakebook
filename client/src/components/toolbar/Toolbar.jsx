@@ -38,7 +38,7 @@ const ToolbarList = ({ editorState, onToggle, types }) => {
   );
 };
 
-export const Toolbar_top = ({ editorState, onToggle }) => (
+export const ToolbarTop = ({ editorState, onToggle }) => (
   <div className="toolbarTop">
     <span>BlockStyles</span>
     <ToolbarList
@@ -49,7 +49,7 @@ export const Toolbar_top = ({ editorState, onToggle }) => (
   </div>
 );
 
-export const Toolbar_hover = ({ editorState, onToggle }) => {
+export const ToolbarHover = ({ editorState, onToggle }) => {
   const [isOpen, setIsOpen] = useState(true);
   return (
     <div className="toolbar">
@@ -72,7 +72,7 @@ export const Toolbar_hover = ({ editorState, onToggle }) => {
   );
 };
 
-export const Toolbar_inline = ({ editorState, onToggle, pos }) => {
+export const ToolbarInline = ({ editorState, onToggle, pos }) => {
   // pos for inline toolbar position
   const currentStyle = editorState.getCurrentInlineStyle();
   console.log(pos);

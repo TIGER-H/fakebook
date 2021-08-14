@@ -6,9 +6,9 @@ import Prism from "prismjs";
 import Draft, { RichUtils } from "draft-js";
 import "draft-js/dist/Draft.css";
 import {
-  Toolbar_inline,
-  Toolbar_side,
-  Toolbar_top,
+  ToolbarInline,
+  ToolbarSide,
+  ToolbarTop,
 } from "../../components/toolbar/Toolbar";
 import { getSelectionPosition, getSelectionRange } from "./utils/selection";
 
@@ -99,13 +99,13 @@ const MyEditor = (props) => {
   return (
     <div className="myEditor" id="richEditor">
       {showInlineToolBar ? (
-        <Toolbar_inline
+        <ToolbarInline
           editorState={editorState}
           onToggle={onInlineStyle}
           pos={position}
         />
       ) : null}
-      <Toolbar_top editorState={editorState} onToggle={onBlockStyle} />
+      <ToolbarTop editorState={editorState} onToggle={onBlockStyle} />
       <Draft.Editor
         editorState={editorState}
         onChange={setEditorState}
