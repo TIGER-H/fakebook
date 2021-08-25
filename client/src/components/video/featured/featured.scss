@@ -2,7 +2,7 @@
   height: 90vh;
   position: relative;
 
-  .category{
+  .category {
     position: absolute;
     top: 90px;
     left: 50px;
@@ -12,7 +12,7 @@
     display: flex;
     align-items: center;
 
-    select{
+    select {
       cursor: pointer;
       background-color: black;
       border: 1px solid white;
@@ -35,9 +35,12 @@
     bottom: 100px;
     color: whitesmoke;
 
+    .featureTitle {
+    }
+
     .featuredDesc {
-      margin: 20px;
       line-height: 2;
+      margin: 10px 0;
     }
 
     .featuredButtons {

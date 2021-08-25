@@ -4,16 +4,8 @@
   margin-right: 5px;
   color: white;
   background-color: black;
-  overflow: hidden;
-
-  video {
-    width: 100%;
-    height: 140px;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
+  // overflow: hidden;
+  position: relative;
 
   img {
     height: 100%;
@@ -21,17 +13,35 @@
     object-fit: cover;
   }
 
-  &:hover {
-    width: 325px;
-    height: auto;
+  .listItemHoverContainer {
+    border-radius: 5px;
     position: absolute;
-    top: -150px;
+    width: 325px;
+    top: -120px;
+    left: -50px;
+    background-color: black;
+    z-index: 20;
+
+    video {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      position: absolute;
+      top: -140px;
+      left: 0;
+    }
+  }
+
+  &:hover {
+    // transform: scale(150%);
+    // width: 325px;
+    // position: absolute;
+    // top: -150px;
     border-radius: 5px;
     z-index: 10;
 
     img {
-      //   transform: scale(130%);
-      height: 140px;
+      height: 120px;
     }
 
     .listItemInfo {
@@ -72,7 +82,7 @@
       }
 
       .itemInfogenre {
-        font-size: 20px;
+        font-size: 10px;
         color: lightgray;
       }
     }

@@ -4,9 +4,21 @@ import {
   ArrowForwardIosOutlined,
 } from "@material-ui/icons";
 import { ListItem } from "./listitem/ListItem";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import axios from "axios";
+import consts from "../../../shared/consts";
 
-export const VideoList = () => {
+export const VideoList = ({ type }) => {
+  const [list, setList] = useState([]);
+  console.log(type, list);
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/movie/${type}?api_key=${consts.API_KEY}&page=1`
+      )
+      .then((res) => setList(res.data.results.slice(0, 10)));
+  }, []);
+
   const listRef = useRef();
 
   const handleClick = (direction) => {
@@ -20,23 +32,16 @@ export const VideoList = () => {
   };
   return (
     <div className="videoList">
-      <span className="listTitle">Continue to watch</span>
+      <span className="listTitle">{type.split("_").join(" ")}</span>
       <div className="listWrapper">
         <ArrowBackIosOutlined
           className="sliderArrow left"
           onClick={() => handleClick("left")}
         />
         <div className="container" ref={listRef}>
-          <ListItem index={0} />
-          <ListItem index={1} />
-          <ListItem index={2} />
-          <ListItem index={3} />
-          <ListItem index={4} />
-          <ListItem index={5} />
-          <ListItem index={6} />
-          <ListItem index={7} />
-          <ListItem index={8} />
-          <ListItem index={9} />
+          {list.map((listitem, index) => (
+            <ListItem itemid={listitem.id} index={index} key={listitem.id} />
+          ))}
         </div>
         <ArrowForwardIosOutlined
           className="sliderArrow right"

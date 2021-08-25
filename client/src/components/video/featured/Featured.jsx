@@ -1,39 +1,43 @@
 import { InfoOutlined, PlayArrow } from "@material-ui/icons";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import consts from "../../../shared/consts";
 import "./featured.scss";
 
+// type: movie/tv
 export const Featured = ({ type }) => {
+  const [upcoming, setUpcoming] = useState({});
+  const genres = type === "movie" ? consts.GENRE_MOVIE : consts.GENRE_TV;
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/movie/upcoming?api_key=${consts.API_KEY}`
+      )
+      .then((res) => setUpcoming(res.data.results[0]));
+  }, []);
   return (
     <div className="featured">
       {type && (
         <div className="category">
-          <span>{true === "movie" ? "Movies" : "Series"}</span>
+          <span>{type === "movie" ? "Movies" : "Series"}</span>
           <select name="genre" id="genre">
-            <option >Genre</option>
-            <option value="adventure">Adventure</option>
-            <option value="comedy">Comedy</option>
-            <option value="crime">Crime</option>
-            <option value="fantasy">Fantasy</option>
-            <option value="historical">Historical</option>
-            <option value="horror">Horror</option>
-            <option value="romance">Romance</option>
-            <option value="sci-fi">Sci-fi</option>
-            <option value="thriller">Thriller</option>
-            <option value="western">Western</option>
-            <option value="animation">Animation</option>
-            <option value="drama">Drama</option>
-            <option value="documentary">Documentary</option>
+            <option>Genre</option>
+            {genres.map((option) => (
+              <option name={option.name} key={option.id}>
+                {option.name}
+              </option>
+            ))}
           </select>
         </div>
       )}
       <img
-        src="http://www.nexushd.org/attachments/202108/20210809134311d48f8d76f7dbeb17cbedab51562ecca7.png"
+        src={`${consts.BASE_URL}${consts.SIZE}${upcoming.backdrop_path}`}
         alt=""
       />
       <div className="featuredInfo">
-        <span className="featuredDesc">
-          2020年夏季奥林匹克运动会闭幕式于当地时间2021年8月8日星期日晚上在东京国立竞技场举行。奥运会旗将从东京移交到2024年夏季奥林匹克运动会举办城市巴黎。
-          2020年东京奥运会闭幕式理念 “Worlds we share”
-        </span>
+        <h1 className="featureTitle">{upcoming.title}</h1>
+        <span className="featuredDesc">{upcoming.overview}</span>
         <div className="featuredButtons">
           <button className="play">
             <PlayArrow />

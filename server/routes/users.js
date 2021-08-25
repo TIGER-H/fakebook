@@ -1,11 +1,11 @@
 const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const verify = require("../middleware/verifyToken");
 
 // update user
-router.put("/:id", async (req, res) => {
-  console.log(req.body);
-  if (req.body.userId === req.params.id || req.body.isAdmin) {
+router.put("/:id", verify, async (req, res) => {
+  if (req.user.id === req.params.id || req.user.isAdmin) {
     // change password
     if (req.body.password) {
       try {
@@ -35,8 +35,8 @@ router.put("/:id", async (req, res) => {
 });
 
 // delete user
-router.delete("/:id", async (req, res) => {
-  if (req.body.userId === req.params.id || req.body.isAdmin) {
+router.delete("/:id", verify, async (req, res) => {
+  if (req.user.id === req.params.id || req.user.isAdmin) {
     try {
       await User.findByIdAndDelete(req.params.id);
       res.status(200).json("Account has been deleted.");
@@ -48,17 +48,28 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-// lh:3000/users?username=test
-// lh:3000/users?userId=2819hbxc
+// lh:3000/api/users?username=test
+// lh:3000/api/users?userId=2819hbxc 
+// lh:3000/api/users ->all
+// lh:3000/api/users?latest=true ->latest 2
 // get a user (using query)
 router.get("/", async (req, res) => {
   const userId = req.query.userId;
   const username = req.query.username;
+  const latest = req.query.latest;
+
   try {
-    const user = userId
-      ? await User.findById(userId)
-      : await User.findOne({ username });
-    // console.log(user._doc);有点意思
+    let user;
+    if (!userId && !username) {
+      user = latest
+        ? await User.find({}).sort({ _id: -1 }).limit(2)
+        : await User.find({});
+    } else {
+      user = userId
+        ? await User.findById(userId)
+        : await User.findOne({ username });
+      // console.log(user._doc);有点意思
+    }
     res.status(200).json(user);
   } catch (error) {
     res.status(500).json(error);
@@ -130,14 +141,5 @@ router.get("/friends/:userId", async (req, res) => {
   }
 });
 
-//get all users
-router.get("/all", async (req, res) => {
-  try {
-    const users = await User.find({});
-    res.status(200).json(users);
-  } catch (error) {
-    res.status(500).json(error);
-  }
-});
 
 module.exports = router;

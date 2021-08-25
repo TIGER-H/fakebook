@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const User = require("../models/User");
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const saltRounds = 10; // for bcrypt
 
@@ -14,6 +15,7 @@ router.post("/signup", async (req, res) => {
       username: req.body.username,
       email: req.body.email,
       password: hashedPassword,
+      isAdmin: req.body.isAdmin || false,
     });
 
     const user = await newUser.save();
@@ -34,7 +36,13 @@ router.post("/login", async (req, res) => {
       user.password
     );
     !validPassword && res.status(400).json("wrong password.");
-    res.status(200).json(user);
+    const accessToken = jwt.sign(
+      { id: user._id, isAdmin: user.isAdmin },
+      process.env.SECRET,
+      { expiresIn: "5d" }
+    );
+    const { password, ...info } = user._doc;
+    res.status(200).json({ ...info, accessToken });
   } catch (error) {
     res.status(500).json(error);
   }

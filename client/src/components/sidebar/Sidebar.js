@@ -19,7 +19,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     axios
-      .get("/users/all")
+      .get("/users")
       .then((res) => setUsers(res.data))
       .catch((err) => console.log(err));
   }, []);
@@ -84,7 +84,11 @@ const Sidebar = () => {
                     className="sidebarFriendName"
                   >
                     <img
-                      src="assets/1.png"
+                      src={
+                        u.profilePicture
+                          ? u.profilePicture
+                          : process.env.PUBLIC_URL + "/assets/default.png"
+                      }
                       alt="profilepic"
                       className="sidebarFriendImg"
                     />

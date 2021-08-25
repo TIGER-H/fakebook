@@ -6,12 +6,12 @@ export const Video = () => {
   return (
     <div className="video">
       <VideoTopBar />
-      <Featured />
+      <Featured type="movie" />
+      <VideoList type="now_playing" />
+      <VideoList type="popular"/>
+      {/* <VideoList />
       <VideoList />
-      <VideoList />
-      <VideoList />
-      <VideoList />
-      <VideoList />
+      <VideoList /> */}
     </div>
   );
 };

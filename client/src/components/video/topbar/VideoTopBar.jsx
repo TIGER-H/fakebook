@@ -1,5 +1,6 @@
 import { ArrowDropDown, Notifications, Search } from "@material-ui/icons";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./videotopbar.scss";
 
 export const VideoTopBar = () => {
@@ -20,11 +21,21 @@ export const VideoTopBar = () => {
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/250px-Netflix_2015_logo.svg.png"
             alt=""
           />
-          <span>Homepage</span>
-          <span>Series</span>
-          <span>Movies</span>
-          <span>New and Popular</span>
-          <span>My List</span>
+          <Link to="/video">
+            <span>Home</span>
+          </Link>
+          <Link to="/video/series">
+            <span>Series</span>
+          </Link>
+          <Link to="/video/movies">
+            <span>Movies</span>
+          </Link>
+          <Link to="/video/trending">
+            <span>New and Popular</span>
+          </Link>
+          <Link to="/video/mylist">
+            <span>My List</span>
+          </Link>
         </div>
         <div className="videoTopbarRight">
           <Search className="icon" />
